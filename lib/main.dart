@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 void main() {
   runApp(BooklyApp());
 }
+
 class BooklyApp extends StatelessWidget {
   const BooklyApp({super.key});
 
@@ -13,10 +14,8 @@ class BooklyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: kPrimaryColor,
-      ),
-      home:const SplashView(),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kPrimaryColor),
+      home: const SplashView(),
     );
   }
 }
