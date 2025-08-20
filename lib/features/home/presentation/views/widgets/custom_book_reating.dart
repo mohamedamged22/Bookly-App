@@ -20,7 +20,10 @@ class CustomBookReating extends StatelessWidget {
           style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: 5),
-        const Text('(254)', style: Styles.textStyle14),
+        Opacity(
+          opacity: .7,
+          child: const Text('(254)', style: Styles.textStyle14),
+        ),
       ],
     );
   }
