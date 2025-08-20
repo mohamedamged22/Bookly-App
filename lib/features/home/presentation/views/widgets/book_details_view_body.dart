@@ -1,5 +1,6 @@
 import 'package:booklyapp/core/utils/style.dart';
 import 'package:booklyapp/features/home/presentation/views/widgets/custom_book_image_item.dart';
+import 'package:booklyapp/features/home/presentation/views/widgets/custom_book_reating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -34,6 +35,8 @@ class BookDetailsViewBody extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 6),
+          const CustomBookReating(mainAxisAlignment: MainAxisAlignment.center),
         ],
       ),
     );
