@@ -1,3 +1,4 @@
+import 'package:booklyapp/constants.dart';
 import 'package:booklyapp/features/home/presentation/views/widgets/book_details_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,7 +10,8 @@ class BookDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         leading: IconButton(
           onPressed: () {
             GoRouter.of(context).pop();
