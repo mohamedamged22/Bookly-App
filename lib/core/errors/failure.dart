@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
 
 abstract class Failure {
   final String errorMessage;
@@ -9,7 +8,7 @@ abstract class Failure {
 class SereverFailure extends Failure {
   SereverFailure(super.errorMessage);
 
-  factory SereverFailure.fromDioError(DioError dioError) {
+  factory SereverFailure.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
         return SereverFailure('Connection time out with api server');

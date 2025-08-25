@@ -3,7 +3,9 @@ import 'package:booklyapp/core/utils/app_router.dart';
 import 'package:booklyapp/core/utils/service_locator.dart';
 import 'package:booklyapp/features/home/data/repos/home_repo_implemention.dart';
 import 'package:booklyapp/features/home/presentation/manger/featured_book_cubit/featured_book_cubit.dart';
+import 'package:booklyapp/features/home/presentation/manger/free_book_cubit/free_book_cubit.dart';
 import 'package:booklyapp/features/home/presentation/manger/newest_book_cubit/newest_books_cubit.dart';
+import 'package:booklyapp/features/home/presentation/manger/popular_book_cubit/popular_book_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,7 +30,22 @@ class BooklyApp extends StatelessWidget {
         ),
         BlocProvider(
           create:
-              (context) => NewestBooksCubit(getIt.get<HomeRepoImplemention>())..fetchNewestBooks(), ),
+              (context) =>
+                  NewestBooksCubit(getIt.get<HomeRepoImplemention>())
+                    ..fetchNewestBooks(),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+                  PopularBookCubit(getIt.get<HomeRepoImplemention>())
+                    ..fetchPopularBooks(),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+                  FreeBookCubit(getIt.get<HomeRepoImplemention>())
+                    ..fetchFreeBooks(),
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

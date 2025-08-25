@@ -4,6 +4,8 @@ import 'package:booklyapp/features/home/data/repos/home_repo_implemention.dart';
 import 'package:booklyapp/features/home/presentation/manger/smila_books_cubit/similar_books_cubit.dart';
 import 'package:booklyapp/features/home/presentation/views/book_details_view.dart';
 import 'package:booklyapp/features/home/presentation/views/home_view.dart';
+import 'package:booklyapp/features/search/data/repo/search_repo_implemention.dart';
+import 'package:booklyapp/features/search/presentation/manger/cubit/search_cubit.dart';
 import 'package:booklyapp/features/search/presentation/views/search_view.dart';
 import 'package:booklyapp/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,11 +23,20 @@ abstract class AppRouter {
         path: kBookDetailsView,
         builder:
             (context, state) => BlocProvider(
-              create: (context) => SimilarBooksCubit(getIt.get<HomeRepoImplemention>()),
-              child: BookDetailsView(bookModel: state.extra as BookModel,),
+              create:
+                  (context) =>
+                      SimilarBooksCubit(getIt.get<HomeRepoImplemention>()),
+              child: BookDetailsView(bookModel: state.extra as BookModel),
             ),
       ),
-      GoRoute(path: kShearchView, builder: (context, state) => SearchView()),
+      GoRoute(
+        path: kShearchView,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => SearchCubit(getIt.get<SearchRepoImplemention>()),
+              child: SearchView(),
+            ),
+      ),
     ],
   );
 }

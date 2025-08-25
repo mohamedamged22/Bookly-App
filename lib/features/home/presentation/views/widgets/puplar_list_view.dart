@@ -1,33 +1,31 @@
 import 'package:booklyapp/core/utils/widgets/custom_error_widget.dart';
 import 'package:booklyapp/core/utils/widgets/custom_loading_indecator.dart';
+import 'package:booklyapp/features/home/presentation/manger/popular_book_cubit/popular_book_cubit.dart';
 import 'package:booklyapp/features/home/presentation/views/widgets/custom_list_view_item.dart';
-import 'package:booklyapp/features/search/presentation/manger/cubit/search_cubit.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchResultListView extends StatelessWidget {
-  const SearchResultListView({super.key});
+class PopularListView extends StatelessWidget {
+  const PopularListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchCubit, SearchState>(
+    return BlocBuilder<PopularBookCubit, PopularBookState>(
       builder: (context, state) {
-        if (state is SearchLoading) {
-          return const Center(child: CustomLoadingIndicator());
-        } else if (state is SearchSuccess) {
+        if (state is PopularBookSuccess) {
           return ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: 10,
+            shrinkWrap: true,
+
+            padding: const EdgeInsets.only(bottom: 20),
+            itemCount: state.books.length,
             itemBuilder: (context, index) {
               return CustomListViewItem(bookModel: state.books[index]);
             },
           );
-        } else if (state is SearchFailure) {
+        } else if (state is PopularBookFailure) {
           return CustomErrorWidget(errorMessage: state.errorMessage);
         } else {
-          return const Center(child: Text("ابحث عن كتاب لعرض النتائج"));
+          return const CustomLoadingIndicator();
         }
       },
     );

@@ -1,4 +1,5 @@
 import 'package:booklyapp/constants.dart';
+import 'package:booklyapp/core/utils/app_router.dart';
 import 'package:booklyapp/features/home/data/book_model/book_model.dart';
 import 'package:booklyapp/features/home/presentation/manger/smila_books_cubit/similar_books_cubit.dart';
 import 'package:booklyapp/features/home/presentation/views/widgets/book_details_view_body.dart';
@@ -36,10 +37,15 @@ class _BookDetailsViewState extends State<BookDetailsView> {
           icon: Icon(Icons.close),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+          IconButton(
+            onPressed: () {
+              GoRouter.of(context).go(AppRouter.kHomeView);
+            },
+            icon: Icon(Icons.home_filled),
+          ),
         ],
       ),
-      body: BookDetailsViewBody(bookModel: widget.bookModel,),
+      body: BookDetailsViewBody(bookModel: widget.bookModel),
     );
   }
 }

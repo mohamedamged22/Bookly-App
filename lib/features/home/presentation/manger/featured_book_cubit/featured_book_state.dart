@@ -13,10 +13,10 @@ final class FeaturedBookLoading extends FeaturedBookState {}
 
 final class FeaturedBookSuccess extends FeaturedBookState {
   final List<BookModel> books;
-  FeaturedBookSuccess(this.books);
+  const FeaturedBookSuccess(this.books);
 }
 
 final class FeaturedBookFailure extends FeaturedBookState {
   final String errorMessage;
-  FeaturedBookFailure(this.errorMessage);
+  const FeaturedBookFailure(this.errorMessage);
 }

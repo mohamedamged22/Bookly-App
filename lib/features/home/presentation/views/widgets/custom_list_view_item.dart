@@ -7,14 +7,14 @@ import 'package:booklyapp/features/home/presentation/views/widgets/custom_book_r
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class NewestListViewItem extends StatelessWidget {
-  const NewestListViewItem({super.key, required this.bookModel});
+class CustomListViewItem extends StatelessWidget {
+  const CustomListViewItem({super.key, required this.bookModel});
   final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetailsView,extra: bookModel);
+        GoRouter.of(context).push(AppRouter.kBookDetailsView, extra: bookModel);
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 20.0),
@@ -43,19 +43,23 @@ class NewestListViewItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      bookModel.volumeInfo.authors![0],
+                      bookModel.volumeInfo.authors?[0] ?? '',
                       style: Styles.textStyle14,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 3),
 
                     Row(
                       children: [
                         Text(
-                          'Free 100%',
-                          style: Styles.textStyle20.copyWith(
+                          bookModel.saleInfo?.listPrice?.amount != null
+                              ? '${bookModel.saleInfo!.listPrice!.amount} ${bookModel.saleInfo!.listPrice!.currencyCode}'
+                              : 'Free',
+                          style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+
                         const Spacer(),
                         CustomBookReating(
                           rating: bookModel.volumeInfo.averageRating ?? 0,

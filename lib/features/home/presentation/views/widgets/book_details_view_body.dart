@@ -39,7 +39,7 @@ class BookDetailsViewBody extends StatelessWidget {
                 Opacity(
                   opacity: .7,
                   child: Text(
-                    bookModel.volumeInfo.authors![0],
+                    bookModel.volumeInfo.authors?[0] ?? '',
                     style: Styles.textStyle18.copyWith(
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.italic,
@@ -49,11 +49,11 @@ class BookDetailsViewBody extends StatelessWidget {
                 const SizedBox(height: 6),
                 CustomBookReating(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  rating: bookModel.volumeInfo.averageRating??0,
-                  count: bookModel.volumeInfo.ratingsCount??0,
+                  rating: bookModel.volumeInfo.averageRating ?? 0,
+                  count: bookModel.volumeInfo.ratingsCount ?? 0,
                 ),
                 const SizedBox(height: 37),
-                 BookAction(bookModel: bookModel,),
+                BookAction(bookModel: bookModel),
                 const Expanded(child: SizedBox(height: 50)),
                 Align(
                   alignment: Alignment.centerLeft,
